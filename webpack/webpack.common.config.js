@@ -37,7 +37,15 @@ module.exports = {
     module: {
         noParse: [],
         preLoaders: [
-            {test: /\.js$/, loader: "source-map-loader", exclude: [path.join(webpackHelper.rootPath, 'node_modules/rxjs')]}
+            {
+                test: /\.js$/,
+                loader: "source-map-loader",
+                exclude: [path.join(webpackHelper.rootPath, 'node_modules/rxjs')]
+            },
+            {
+                test: /\.ts$/,
+                loader: 'tslint'
+            }
         ],
         loaders: [
 
@@ -52,7 +60,7 @@ module.exports = {
 
             /* Support for CSS as raw text. */
             {test: /\.css$/, loader: 'raw-loader'},
-            
+
             /* Support for LESS. */
             {test: /\.less/, loader: 'less-loader'},
 
@@ -67,14 +75,6 @@ module.exports = {
         postLoaders: []
     },
 
-    plugins: [],
-
-    tslint: {
-        emitErrors: false,
-        failOnHint: false,
-        resourcePath: webpackHelper.appAngularPath
-    },
-
     /* We need this due to problems with es6-shim. */
     node: {
         global: 'window',
@@ -83,5 +83,14 @@ module.exports = {
         module: false,
         clearImmediate: false,
         setImmediate: false
+    },
+
+    plugins: [],
+
+    tslint: {
+        emitErrors: false,
+        failOnHint: false,
+        resourcePath: webpackHelper.appAngularPath
     }
+
 };
