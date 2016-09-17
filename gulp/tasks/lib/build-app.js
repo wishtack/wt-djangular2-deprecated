@@ -19,7 +19,6 @@ module.exports = function buildAppFactory(args) {
             /* Load environment before building as we might cross-env build the project.
              * I.e.: Build the production project on local machine using 'gulp build --env=prod'. */
             loadenv(),
-            'typings-install',
             webpack(args),
             'cache-manifest'
         )(done);
